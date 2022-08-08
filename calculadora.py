@@ -1,11 +1,11 @@
 import PySimpleGUI as sg
 
-# Calculadora simples (sim, contém bugs).
+# Calculadora simples (contém bugs).
 
 theme_menu = ['Menu', ['LightGrey1', 'DarkGrey8', 'Random']]  # Cores do tema.
-button_size = (6, 3)  # Tamanho do botão.
-current_number = []  # Número atual.
-operation = []  # Cálculo.
+button_size = (6, 3)  # Tamanho padrão dos botões.
+current_number = []
+operation = []
 
 
 def create_window(theme):
@@ -21,7 +21,7 @@ def create_window(theme):
             justification='right',
             expand_x=True,
             pad=(10, 20),
-            right_click_menu=theme_menu, key='-TEXTO-'
+            right_click_menu=theme_menu, key='-TEXT-'
             )
         ],  # Mensagem do resultado.
 
@@ -68,26 +68,26 @@ while True:
 
         number_string = ''.join(current_number)
         
-        window['-TEXTO-'].update(number_string)
+        window['-TEXT-'].update(number_string)
     
     if event in ['+', '-', '*', '/']:
         operation.append(''.join(current_number))
         current_number.clear()
         operation.append(event)
-        window['-TEXTO-'].update('')
+        window['-TEXT-'].update('')
     
     if event == '-ENTRA-':
         operation.append(''.join(current_number))
 
         result = eval(''.join(operation))
 
-        window['-TEXTO-'].update(result)
+        window['-TEXT-'].update(result)
         operation.clear()
     
     if event == '-LIMPA-':
         current_number.clear()
         operation.clear()
-        window['-TEXTO-'].update('')
+        window['-TEXT-'].update('')
 
     # Muda o tema.
     if event in theme_menu[1]:

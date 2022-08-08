@@ -29,10 +29,10 @@ def create_window():
         layout,
         size=(300, 300),
         no_titlebar=True,
-        element_justification='center')  # Tela (programa).
+        element_justification='center')
 
 
-window = create_window()
+window = create_window()  # Tela (programa).
 
 while True:
     event, values = window.read(timeout=10)  # Dados da janela.
@@ -60,15 +60,15 @@ while True:
                 window['-STARTSTOP-'].update('Stop')
                 window['-LAP-'].update(visible=True)
     
-    if event == '-LAP-':
-        window.extend_layout(window['-LAPS-'], [[sg.Text(lap_amount), sg.VSeparator(), sg.Text(elapsed_time)]])
-        
-        lap_amount += 1
-
     if active:
         elapsed_time = round(time() - start_time, 1)
         
         window['-TIMER-'].update(elapsed_time)
+
+    if event == '-LAP-':
+        window.extend_layout(window['-LAPS-'], [[sg.Text(lap_amount), sg.VSeparator(), sg.Text(elapsed_time)]])
+        
+        lap_amount += 1
 
     # Se clicar no "x", encerra o programa.
     if event in (sg.WIN_CLOSED, '-CLOSE-'):

@@ -6,7 +6,7 @@ import PySimpleGUI as sg
 layout = [
     [
         sg.Input(key='-INPUT-'),  # Input do usuário.
-        sg.Spin(['km/mi', 'kg/lb', 'seg/min'], key='-UNIDADES-'),  # Unidades de conversão.
+        sg.Spin(['km/mi', 'kg/lb', 'seg/min'], key='-UNITS-'),  # Unidades de conversão.
         sg.Button('Converte', key='-CONVERTE-')  # Botão de conversão.
     ],
     [sg.Text(key='-OUTPUT-')]  # Mensagem do resultado.
@@ -22,16 +22,16 @@ while True:
         
         if input_value.isnumeric():
             # Verifica as unidades e as converte corretamente.
-            match values['-UNIDADES-']:
-                # Quilômetro p/ Milha.
+            match values['-UNITS-']:
+                # Quilômetro p/ milha.
                 case 'km/mi':
                     output = round(float(input_value) * 0.621371, 2)
                     output_string = f'{input_value}km é {output}mi'
-                # Quilo p/ Libra.
+                # Quilo p/ libra.
                 case 'kg/lb':
                     output = round(float(input_value) * 2.20462, 2)
                     output_string = f'{input_value}kg é {output}lb'
-                # Segundo p/ Minuto.
+                # Segundo p/ minuto.
                 case 'seg/min':
                     output = round(float(input_value) / 60, 2)
                     output_string = f'{input_value} segundo(s) é {output} minuto(s)'
