@@ -1,1 +1,1 @@
-# Interface Grafica com Python
+# Interface Gráfica com Python
